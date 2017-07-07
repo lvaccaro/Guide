@@ -78,10 +78,15 @@ Fatal: Failed to start the JavaScript console: api modules: Post http://<PUBLIC_
 Now, I run a second node that should connect to my previous master node in order to grow up my network.
 The precondition is to start a node with the same genesis block of the master node; else, the connection fails with the error: "Genesis block mismatch". So I need to propagate the genesis block to the current node and the run the peer.
 ```
+$ cat /opt/ethereum/ethdata/static-nodes.json
+[
+"enode:///<HEX_STRING>@[<PUBLIC_IP>]:30303"
+]
+
 $ geth --datadir "/opt/ethereum/ethdata" init genesis.json
-$ geth --datadir "/opt/ethereum/ethdata" --networkid 666 --identity "My Ethereum Node" --rpc --nodiscover  -verbosity 5 -nat "none"  --bootnodes "enode://f6af0ea819a39504523c5c26a5957e32e080f240fbe2bcf855f8057d1c16162e3b25fd0d6c1718084700b2281c5ac784d395c65b37583bbab7ebbd006f160a24@[<PUBLIC_IP>]:30301"
+$ geth --datadir "/opt/ethereum/ethdata" --networkid 666 --identity "My Ethereum Node" --rpc --nodiscover  -verbosity 5 -nat "none"
 ```
-Note : the option bootnodes allow me to define a list of peers to connect. 
+Note : the option bootnodes not work for me. Define the list of peers as static-nodes.json or attach manually the peer with the console command: admin.addPeer("enode:///<HEX_STRING>@[<PUBLIC_IP>]:30303");
 I can retrieve the master address from the log in the following format:
 ```
 "enode://<HEX_STRING>@[::]:30301"
