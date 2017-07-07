@@ -98,5 +98,15 @@ DEBUG[07-04|02:18:38] Ethereum peer connected                  id=4396b22722383e
 TRACE[07-04|02:18:38] Registering sync peer                    peer=4396b22722383e3f 
 ```
 
+## Grow up the network
+Now, I want start 10/100/1000 new peers! It is very tedious define to each peer the list of all the others. So I need a different solution to manage the list of peers.
+I need to bootstrap node that others can use to find each other in your network and/or over the internet.
+```
+bootnode --genkey=boot.key
+bootnode --nodekey=boot.key
+```
+In the output is showed the current enode address to pass as bootnodes option in the geth command.
+
 ## Resources
+* https://github.com/ethereum/go-ethereum/wiki/Private-network
 * https://souptacular.gitbooks.io/ethereum-tutorials-and-tips-by-hudson/content/private-chain.html
