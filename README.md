@@ -57,7 +57,23 @@ DEBUG[07-04|01:51:42] Couldn't add port mapping                proto=tcp extport
 * No rpc connection : set the public ip as the external interface (--rpcaddr <PUBLIC_IP>)
 
 
+## Attach to Master Node
+I want connect to my master node to test everything works fine! 
+I only need the public ip of the master node to connect.
+```
+$ geth attach http://<PUBLIC_IP>:8545
+Welcome to the Geth JavaScript console!
+
+> eth.blockNumber
+0
+> eth.syncing
+false
+```
+The most common error is the connection refused. In this case, I make sure to have no firewall and set the network/rpc options on my server as showed in the previous section.
+```
+Fatal: Failed to start the JavaScript console: api modules: Post http://<PUBLIC_IP>:8545: dial tcp <PUBLIC_IP>:8545: getsockopt: connection refused
+```
 
 
-### Resources
+## Resources
 * https://souptacular.gitbooks.io/ethereum-tutorials-and-tips-by-hudson/content/private-chain.html
