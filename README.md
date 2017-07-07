@@ -35,7 +35,7 @@ In this example, I choose to don't use the default Ethereum folder, so I can sta
 ## Master Node
 Start the first peer of the network!
 ```
-$ geth --datadir "/opt/ethereum/ethdata" --networkid 666 --identity "MyEthereumNode" --rpccorsdomain "*" --nodiscover --rpc -verbosity 5 -nat "none" -rpcaddr MASTER_IP
+$ geth --datadir "/opt/ethereum/ethdata" --networkid 666 --identity "My Ethereum Node" --rpccorsdomain "*" --nodiscover --rpc -verbosity 5 -nat "none" -rpcaddr MASTER_IP
 ```
 When the peer is open to public, a lots of other peers try to connect to my node. These peers have different genesis block, so the commucation fails, as the follow example:
 ```
@@ -74,6 +74,29 @@ The most common error is the connection refused. In this case, I make sure to ha
 Fatal: Failed to start the JavaScript console: api modules: Post http://<PUBLIC_IP>:8545: dial tcp <PUBLIC_IP>:8545: getsockopt: connection refused
 ```
 
+## Second peer node
+Now, I run a second node that should connect to my previous master node in order to grow up my network.
+The precondition is to start a node with the same genesis block of the master node; else, the connection fails with the error: "Genesis block mismatch". So I need to propagate the genesis block to the current node and the run the peer.
+```
+$ geth --datadir "/opt/ethereum/ethdata" init genesis.json
+$ geth --datadir "/opt/ethereum/ethdata" --networkid 666 --identity "My Ethereum Node" --rpc --nodiscover  -verbosity 5 -nat "none"  --bootnodes "enode://f6af0ea819a39504523c5c26a5957e32e080f240fbe2bcf855f8057d1c16162e3b25fd0d6c1718084700b2281c5ac784d395c65b37583bbab7ebbd006f160a24@[<PUBLIC_IP>]:30301"
+```
+Note : the option bootnodes allow me to define a list of peers to connect. 
+I can retrieve the master address from the log in the following format:
+```
+"enode://<HEX_STRING>@[::]:30301"
+```
+Remember this address works only for localhost, in order to access from another machine, I need to change the "[::]" into "[<PUBLIC_IP>]".
+
+To test the connection, check the log into master node:
+```
+DEBUG[07-04|02:18:38] Adding p2p peer                          id=4396b22722383e3f name=Geth/Ethereum
+ode...                                              addr=<PUBLIC_IP>:18688    peers=1 
+TRACE[07-04|02:18:38] Starting protocol eth/63                 id=4396b22722383e3f conn=inbound 
+DEBUG[07-04|02:18:38] Ethereum peer connected                  id=4396b22722383e3f conn=inbound name=Get
+/EthereumNode/v1.6.7-unstable-a0aa071c/linux-386/go1.7.1 
+TRACE[07-04|02:18:38] Registering sync peer                    peer=4396b22722383e3f 
+```
 
 ## Resources
 * https://souptacular.gitbooks.io/ethereum-tutorials-and-tips-by-hudson/content/private-chain.html
