@@ -107,6 +107,36 @@ bootnode --nodekey=boot.key
 ```
 In the output is showed the current enode address to pass as bootnodes option in the geth command.
 
+## Mining and be happy
+
+
+1. generate miner account on local node
+```
+$ geth --datadir "/opt/ethereum/ethdata" account new
+WARN [07-04|02:58:30] No etherbase set and no accounts found as default 
+Your new account is locked with a password. Please give a password. Do not forget this password.
+Passphrase: 
+Repeat passphrase: 
+Address: {cabb18d3d18c7fe74ec21d1670127abf66ca1cc8}
+```
+
+2. restart the localnode with miner options (--mine, --etherbase). Wait the complete of generating DAG process.
+```
+$ geth --datadir "/opt/ethereum/ethdata1" --networkid 666 --identity "DelethereumNode" --rpc --nodiscover  --bootnodes "enode://f6af0ea819a39504523c5c26a5957e32e080f240fbe2bcf855f8057d1c16162e3b25fd0d6c1718084700b2281c5ac784d395c65b37583bbab7ebbd006f160a24@[213.149.211.77]:30301" -verbosity 5 --mine --etherbase 0xcabb18d3d18c7fe74ec21d1670127abf66ca1cc8
+```
+Mining requires a lots of memory. I min in a virtual machine with  <1024MB free ram, and geth crash.
+```
+ERROR[07-04|03:15:27] Failed to generate mapped ethash dataset epoch=1 err="cannot allocate memory"
+runtime: out of memory: cannot allocate 2164260864-byte block (136445952 in use)
+```
+
+3. Use a real miner like ethminer : ethereum cpu mining is really inefficient.
+https://github.com/ethereum-mining/ethminer
+
+
+## Live longer
+
+
 ## Resources
 * https://github.com/ethereum/go-ethereum/wiki/Private-network
 * https://souptacular.gitbooks.io/ethereum-tutorials-and-tips-by-hudson/content/private-chain.html
