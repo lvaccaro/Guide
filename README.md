@@ -127,7 +127,7 @@ Address: {cabb18d3d18c7fe74ec21d1670127abf66ca1cc8}
 
 2. restart the localnode with miner options (--mine, --etherbase). Wait the complete of generating DAG process.
 ```
-$ geth --datadir "/opt/ethereum/ethdata" --networkid 666 --identity "DelethereumNode" --rpc --nodiscover -verbosity 5 --mine --etherbase 0xcabb18d3d18c7fe74ec21d1670127abf66ca1cc8
+$ geth --datadir "/opt/ethereum/ethdata" --networkid 666 --identity "My Ethereum Node" --rpc --nodiscover -verbosity 5 --mine --etherbase 0xcabb18d3d18c7fe74ec21d1670127abf66ca1cc8
 ```
 Mining requires a lots of memory. I min in a virtual machine with  <1024MB free ram, and geth crash.
 ```
@@ -160,15 +160,47 @@ $ node_modules/electron/dist/electron . --rpc /opt/ethereum/ethdata/geth.ipc
 Note:
 * Popup freezed "Connecting to 1 peer": when your local peer node is not runned or it is not available, electron runs a new instance of geth with default parameters. Elecron support also some commandline options to pass to geth (--node option) but I can't make them work correctly. 
 
-# Mining Pool
+## Mining Pool
 Open Source Ethereum Mining Pool: https://github.com/sammy007/open-ethereum-pool .
-Running Pool:
+1. Generate new address
+```
+$ geth --datadir "/opt/ethereum/ethdata" account new
+WARN [07-09|03:00:36] No etherbase set and no accounts found as default 
+Your new account is locked with a password. Please give a password. Do not forget this password.
+Passphrase: 
+Repeat passphrase: 
+Address: {433de02034e1e651f66085dbf4e3bac0b78c9938}
+```
+2. Start local peer with mine options activated
+```
+$ geth --datadir "/opt/ethereum/ethdata" --networkid 666 --identity "My Ethereum Node" --rpc --nodiscover -verbosity 5 --mine --etherbase 433de02034e1e651f66085dbf4e3bac0b78c9938
+```
+3. Edit config.json file:
+* if the peers is not localhost edit the remote ip url: "upstream"->"url", "unlocker"->"daemon", "payouts"->"daemon" 
+* set pool fee and address: "unlocker"->"poolFee", "unlocker"->"poolFeeAddress"
+* set payouts address: "payouts"->"address"
+3. Running Pool:
 ```
 $ ./build/bin/open-ethereum-pool config.json
 ```
-Building Frontend:
+4. Building Frontend:
 ```
-cd www && ./build.sh
+$ cd www && ./build.sh
+```
+5. Configure Nginx
+```
+server {
+        listen 80;
+        server_name www.domain.com domain.com;
+        root /opt/open-ethereum-pool/www/dist/;
+        index index.html;
+        location / {
+                try_files $uri $uri/ =404;
+        }
+        location /api {
+                proxy_pass http://api;
+        }
+}
 ```
 
 
