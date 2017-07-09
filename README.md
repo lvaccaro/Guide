@@ -127,7 +127,7 @@ Address: {cabb18d3d18c7fe74ec21d1670127abf66ca1cc8}
 
 2. restart the localnode with miner options (--mine, --etherbase). Wait the complete of generating DAG process.
 ```
-$ geth --datadir "/opt/ethereum/ethdata1" --networkid 666 --identity "DelethereumNode" --rpc --nodiscover  --bootnodes "enode://f6af0ea819a39504523c5c26a5957e32e080f240fbe2bcf855f8057d1c16162e3b25fd0d6c1718084700b2281c5ac784d395c65b37583bbab7ebbd006f160a24@[213.149.211.77]:30301" -verbosity 5 --mine --etherbase 0xcabb18d3d18c7fe74ec21d1670127abf66ca1cc8
+$ geth --datadir "/opt/ethereum/ethdata" --networkid 666 --identity "DelethereumNode" --rpc --nodiscover -verbosity 5 --mine --etherbase 0xcabb18d3d18c7fe74ec21d1670127abf66ca1cc8
 ```
 Mining requires a lots of memory. I min in a virtual machine with  <1024MB free ram, and geth crash.
 ```
@@ -141,6 +141,24 @@ https://github.com/ethereum-mining/ethminer
 
 ## Live longer
 
+
+## Wallet
+Download and install Mist.
+
+Run a local peer:
+```
+$ geth --datadir "/opt/ethereum/ethdata" --networkid 666 --identity "My Ethereum Node" --rpc --nodiscover  -verbosity 5 -nat "none"
+```
+In the rootdir of Mist:
+```
+$ cd interface && meteor --no-release-check
+```
+In another console:
+```
+$ node_modules/electron/dist/electron . --rpc /opt/ethereum/ethdata/geth.ipc --node-networkid 666 --node-datadir /opt/ethereum/ethdata/ --node-verbosity 5 --node-nat "none"
+```
+Note:
+* Popup freezed "Connecting to 1 peer": when your local peer node is not runned or in invalid configuration, electron run a new instance with different parameters and it doesn't work right.
 
 ## Resources
 * https://github.com/ethereum/go-ethereum/wiki/Private-network
