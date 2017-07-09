@@ -143,7 +143,7 @@ https://github.com/ethereum-mining/ethminer
 
 
 ## Wallet
-Download and install Mist.
+Download and install Mist: https://github.com/ethereum/mist .
 
 Run a local peer:
 ```
@@ -160,6 +160,20 @@ $ node_modules/electron/dist/electron . --rpc /opt/ethereum/ethdata/geth.ipc
 Note:
 * Popup freezed "Connecting to 1 peer": when your local peer node is not runned or it is not available, electron runs a new instance of geth with default parameters. Elecron support also some commandline options to pass to geth (--node option) but I can't make them work correctly. 
 
+# Mining Pool
+Open Source Ethereum Mining Pool: https://github.com/sammy007/open-ethereum-pool .
+Running Pool:
+```
+$ ./build/bin/open-ethereum-pool config.json
+```
+Building Frontend:
+```
+cd www && ./build.sh
+```
+
+
 ## Resources
 * https://github.com/ethereum/go-ethereum/wiki/Private-network
 * https://souptacular.gitbooks.io/ethereum-tutorials-and-tips-by-hudson/content/private-chain.html
+* https://github.com/ethereum/mist
+* https://github.com/sammy007/open-ethereum-pool
