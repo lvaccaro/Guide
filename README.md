@@ -155,10 +155,10 @@ $ cd interface && meteor --no-release-check
 ```
 In another console:
 ```
-$ node_modules/electron/dist/electron . --rpc /opt/ethereum/ethdata/geth.ipc --node-networkid 666 --node-datadir /opt/ethereum/ethdata/ --node-verbosity 5 --node-nat "none"
+$ node_modules/electron/dist/electron . --rpc /opt/ethereum/ethdata/geth.ipc
 ```
 Note:
-* Popup freezed "Connecting to 1 peer": when your local peer node is not runned or in invalid configuration, electron run a new instance with different parameters and it doesn't work right.
+* Popup freezed "Connecting to 1 peer": when your local peer node is not runned or it is not available, electron runs a new instance of geth with default parameters. Elecron support also some commandline options to pass to geth (--node option) but I can't make them work correctly. 
 
 ## Resources
 * https://github.com/ethereum/go-ethereum/wiki/Private-network
