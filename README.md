@@ -175,19 +175,44 @@ Address: {433de02034e1e651f66085dbf4e3bac0b78c9938}
 ```
 $ geth --datadir "/opt/ethereum/ethdata" --networkid 666 --identity "My Ethereum Node" --rpc --nodiscover -verbosity 5 --mine --etherbase 433de02034e1e651f66085dbf4e3bac0b78c9938
 ```
-3. Edit config.json file:
+3. Edit Api config.json file:
 * if the peers is not localhost edit the remote ip url: "upstream"->"url", "unlocker"->"daemon", "payouts"->"daemon" 
 * set pool fee and address: "unlocker"->"poolFee", "unlocker"->"poolFeeAddress"
 * set payouts address: "payouts"->"address"
-3. Running Pool:
+3. Running Api Pool:
 ```
 $ ./build/bin/open-ethereum-pool config.json
 ```
-4. Building Frontend:
+4. Edit Frontend config file:
+```
+$ vim www/config/environment.js:
+...
+APP: {
+      // API host and port
+      ApiUrl: '//domain.com/',
+
+      // HTTP mining endpoint
+      HttpHost: 'http://domain.com',
+      HttpPort: 8888,
+
+      // Stratum mining endpoint
+      StratumHost: 'domain.com',
+      StratumPort: 8008,
+
+      // Fee and payout details
+      PoolFee: '100%',
+      PayoutThreshold: '0.5 Ether',
+
+      // For network hashrate (change for your favourite fork)
+      BlockTime: 14.4
+    }
+...
+```
+5. Building Frontend:
 ```
 $ cd www && ./build.sh
 ```
-5. Configure Nginx
+6. Configure Nginx
 ```
 server {
         listen 80;
