@@ -227,7 +227,20 @@ server {
         }
 }
 ```
-
+## NetStat.io
+Ethereum Network Stats : https://github.com/cubedro/eth-netstats .
+1. Edif peernode list:
+```
+$ vim lib/utils/config.js
+var trusted = [
+        '127.0.0.1'];
+...
+```
+2. Build & Run the full version run
+```
+grunt
+npm start
+```
 
 ## Resources
 * https://github.com/ethereum/go-ethereum/wiki/Private-network
