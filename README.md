@@ -102,13 +102,13 @@ The precondition is to start a node with the same genesis block of the master no
 ```
 $ cat /opt/ethereum/ethdata/static-nodes.json
 [
-"enode:///<HEX_STRING>@[<PUBLIC_IP>]:30303"
+"enode:///<HEX_STRING>@[<PUBLIC_IP>]:30303?discport=0"
 ]
 
 $ geth --datadir "/opt/ethereum/ethdata" init genesis.json
 $ geth --datadir "/opt/ethereum/ethdata" --networkid 666 --identity "My Ethereum Node" --rpc --nodiscover  --verbosity 5 --nat "none"
 ```
-Note : the option bootnodes not work for me. Define the list of peers as static-nodes.json or attach manually the peer with the console command: admin.addPeer("enode:///<HEX_STRING>@[<PUBLIC_IP>]:30303");
+Note : the option bootnodes not work for me. Define the list of peers as static-nodes.json or attach manually the peer with the console command: admin.addPeer("enode:///<HEX_STRING>@[<PUBLIC_IP>]:30303?discport=0");
 I can retrieve the master address from the log in the following format:
 ```
 "enode://<HEX_STRING>@[::]:30301"
