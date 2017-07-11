@@ -251,17 +251,43 @@ server {
 ```
 ## NetStat.io
 Ethereum Network Stats : https://github.com/cubedro/eth-netstats .
-1. Edif peernode list:
+
+
+1. Cloning utils
+```
+$ git clone https://github.com/ethersphere/eth-utils
+cd eth-utils
+```
+2. Buid config
+```
+bash netstatconf.sh <number_of_clusters> <name_prefix> <ws_server> <ws_secret> 
+$ bash netstatconf.sh 2 center http://localhost:3301 password > /opt/delethereum/ethstats.json
+```
+3. Installing eth-net-intelligence-api
+```
+$ git clone https://github.com/cubedro/eth-net-intelligence-api
+$ cd eth-net-intelligence-api
+$ npm install
+$ sudo npm install -g pm2
+$ pm2 start app.json /opt/delethereum/ethstats.json
+```
+4. Installing eth-nets
+```
+$ git clone https://github.com/cubedro/eth-netstats
+$ cd eth-netstats
+$ npm install
+```
+5. Edif peernode list:
 ```
 $ vim lib/utils/config.js
 var trusted = [
         '127.0.0.1'];
 ...
 ```
-2. Build & Run the full version run
+6. Build & Run the full version run
 ```
 grunt
-npm start
+PORT=3301 WS_SECRET=432432 npm start
 ```
 
 ## Resources
@@ -269,3 +295,6 @@ npm start
 * https://souptacular.gitbooks.io/ethereum-tutorials-and-tips-by-hudson/content/private-chain.html
 * https://github.com/ethereum/mist
 * https://github.com/sammy007/open-ethereum-pool
+bash netstatconf.sh <number_of_clusters> <name_prefix> <ws_server> <ws_secret> 
+
+bash netstatconf.sh 2 center http://localhost:3301 432432 > /opt/delethereum/ethstats.json
