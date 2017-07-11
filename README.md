@@ -35,7 +35,7 @@ In this example, I choose to don't use the default Ethereum folder, so I can sta
 ## Master Node
 Start the first peer of the network!
 ```
-$ geth --datadir "/opt/ethereum/ethdata" --networkid 666 --identity "My Ethereum Node" --rpccorsdomain "*" --nodiscover --rpc -verbosity 5 -nat "none" -rpcaddr MASTER_IP
+$ geth --datadir "/opt/ethereum/ethdata" --networkid 666 --identity "My Ethereum Node" --rpccorsdomain "*" --nodiscover --rpc --verbosity 5 --nat "none" --rpcaddr MASTER_IP
 ```
 When the peer is open to public, a lots of other peers try to connect to my node. These peers have different genesis block, so the commucation fails, as the follow example:
 ```
@@ -84,7 +84,7 @@ $ cat /opt/ethereum/ethdata/static-nodes.json
 ]
 
 $ geth --datadir "/opt/ethereum/ethdata" init genesis.json
-$ geth --datadir "/opt/ethereum/ethdata" --networkid 666 --identity "My Ethereum Node" --rpc --nodiscover  -verbosity 5 -nat "none"
+$ geth --datadir "/opt/ethereum/ethdata" --networkid 666 --identity "My Ethereum Node" --rpc --nodiscover  --verbosity 5 --nat "none"
 ```
 Note : the option bootnodes not work for me. Define the list of peers as static-nodes.json or attach manually the peer with the console command: admin.addPeer("enode:///<HEX_STRING>@[<PUBLIC_IP>]:30303");
 I can retrieve the master address from the log in the following format:
@@ -127,7 +127,7 @@ Address: {cabb18d3d18c7fe74ec21d1670127abf66ca1cc8}
 
 2. restart the localnode with miner options (--mine, --etherbase). Wait the complete of generating DAG process.
 ```
-$ geth --datadir "/opt/ethereum/ethdata" --networkid 666 --identity "My Ethereum Node" --rpc --nodiscover -verbosity 5 --mine --etherbase 0xcabb18d3d18c7fe74ec21d1670127abf66ca1cc8
+$ geth --datadir "/opt/ethereum/ethdata" --networkid 666 --identity "My Ethereum Node" --rpc --nodiscover --verbosity 5 --mine --etherbase 0xcabb18d3d18c7fe74ec21d1670127abf66ca1cc8
 ```
 Mining requires a lots of memory. I min in a virtual machine with  <1024MB free ram, and geth crash.
 ```
@@ -147,7 +147,7 @@ Download and install Mist: https://github.com/ethereum/mist .
 
 Run a local peer:
 ```
-$ geth --datadir "/opt/ethereum/ethdata" --networkid 666 --identity "My Ethereum Node" --rpc --nodiscover  -verbosity 5 -nat "none"
+$ geth --datadir "/opt/ethereum/ethdata" --networkid 666 --identity "My Ethereum Node" --rpc --nodiscover  --verbosity 5 --nat "none"
 ```
 In the rootdir of Mist:
 ```
