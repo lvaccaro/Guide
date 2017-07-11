@@ -32,6 +32,28 @@ $ geth --datadir "/opt/ethereum/ethdata" init genesis.json
 Geth generates the genesis block and I can start to play!
 In this example, I choose to don't use the default Ethereum folder, so I can start more than one peer in the same machine. I will use this data folder in the next sections.
 
+### Premine Account
+Add as many premine accounts as you wish! 
+1. create a new account
+```
+$ geth --datadir "/opt/ethereum/ethdata" account new
+```
+2. edit genesis.json
+```
+"alloc": {
+    "your_friend_address" : { "balance" : "amount"}
+    }
+```
+Note: 10^18 = 1 ether
+3. clear the genesis 
+```
+$ rm /opt/ethereum/ethdata/geth
+```
+4. build the genesis
+```
+$ geth --datadir "/opt/ethereum/ethdata" init genesis.json
+```
+
 ## Master Node
 Start the first peer of the network!
 ```
