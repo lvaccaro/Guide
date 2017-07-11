@@ -290,6 +290,29 @@ grunt
 PORT=3301 WS_SECRET=432432 npm start
 ```
 
+## Explorer
+EthereumClassic Block Explorer: https://github.com/ethereumproject/explorer
+1. Download
+```
+git clone https://github.com/ethereumproject/explorer
+cd explorer
+```
+2. Edit configuration file: /tools/config.json
+```
+{
+    "gethPort": 8545, 
+    "blocks": [ {"start": 0, "end": "latest"}],
+    "quiet": false,
+    "terminateAtExistingDB": true,
+    "listenOnly": false
+}
+```
+3. Run
+```
+nohup node ./tools/grabber.js &
+nohup ./tools/stats.js &
+```
+
 ## Resources
 * https://github.com/ethereum/go-ethereum/wiki/Private-network
 * https://souptacular.gitbooks.io/ethereum-tutorials-and-tips-by-hudson/content/private-chain.html
