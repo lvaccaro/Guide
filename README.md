@@ -8,6 +8,7 @@ Enjoy with our scam-contract.
 ## Our values
 * in Force, we Trust
 * in Smart Contracts, we Verify
+* in Ethereum, we Fork
 * in Low-fees, we Hope
 * in You, we Need.
 
