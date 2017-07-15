@@ -1,4 +1,4 @@
-# DelEThereum
+# DelEthereum
 http://www.delethereum.org
 
 
