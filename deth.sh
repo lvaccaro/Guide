@@ -1,9 +1,9 @@
 #!/bin/bash
-DATADIR="~/.delethereum"
+DATADIR="/tmp/delethereum"
 IDENTITY="My DelEthereum Node"
 NAT="none"
 PARAMS=""
-            
+
 while [[ $# -gt 1 ]]
 do
 key="$1"
@@ -30,19 +30,24 @@ done
 
 if [  -d "$DATADIR" ]
 then
-	# Folder exist
-  	echo "start..."
+        # Folder exist
+        echo "START"
 else
-	# Folder not exist
-  	echo "build datadir..."
-  	mkdir "$DATADIR" 
-  	cd "$DATADIR"
-  	wget https://pastebin.com/raw/NgRX3viA
-  	mv NgRX3viA genesis.json
-  	wget https://pastebin.com/raw/zwZ9VKDV
-  	mv zwZ9VKDV static_nodes.json
-  	cd ..
-  	geth --datadir "$DATADIR" init genesis.json
+        # Folder not exist
+        echo "mkdir $DATADIR"
+        mkdir "$DATADIR"
+
+        wget https://pastebin.com/raw/NgRX3viA
+        echo "mv NgRX3viA $DATADIR/genesis.json"
+        mv NgRX3viA "$DATADIR/genesis.json"
+
+        wget https://pastebin.com/raw/zwZ9VKDV
+        echo "mv zwZ9VKDV $DATADIR/static_nodes.json"
+        mv zwZ9VKDV "$DATADIR/static_nodes.json"
+
+        echo "geth --datadir $DATADIR init genesis.json"
+        geth --datadir "$DATADIR" init genesis.json
 fi
 
+echo "geth --datadir $DATADIR --networkid 666 --identity $IDENTITY --rpc --nodiscover  --verbosity 5 --nat $NAT $PARAMS console"
 geth --datadir "$DATADIR" --networkid 666 --identity "$IDENTITY" --rpc --nodiscover  --verbosity 5 --nat "$NAT" "$PARAMS" console
