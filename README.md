@@ -6,11 +6,10 @@ The best Ethereum scam-clone.
 Enjoy with our scam-contract.
 
 ## Our values
-* in Free Software, we Trust
+* in Force, we Trust
 * in Smart Contracts, we Verify
-* in low fees, we hope
-* in market, we lie
-* in you, we need.
+* in Low-fees, we Hope
+* in You, we Need.
 
 ## Official Platform 
 * go-delethereum : https://github.com/Delethereum/go-delethereum
