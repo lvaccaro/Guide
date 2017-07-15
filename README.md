@@ -11,9 +11,13 @@ Enjoy with our scam-contract.
 * in Low-fees, we Hope
 * in You, we Need.
 
-## Official Platform 
-* go-delethereum : https://github.com/Delethereum/go-delethereum
-* deMist: https://github.com/Delethereum/deMist
+## Client go-delethereum
+https://github.com/Delethereum/go-delethereum
+
+
+## Wallet deMist
+https://github.com/Delethereum/deMist
+
 
 ## Official Platform 
 * website : http://www.delethereum.org
