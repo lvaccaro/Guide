@@ -49,5 +49,5 @@ else
         geth --datadir "$DATADIR" init genesis.json
 fi
 
-echo "geth --datadir $DATADIR --networkid 666 --identity $IDENTITY --rpc --nodiscover  --verbosity 5 --nat $NAT $PARAMS console"
-geth --datadir "$DATADIR" --networkid 666 --identity "$IDENTITY" --rpc --nodiscover  --verbosity 5 --nat "$NAT" "$PARAMS" console
+echo "geth --datadir $DATADIR  --ipcpath "$DATADIR/geth.ipc" --networkid 666 --identity $IDENTITY --rpc --nodiscover  --verbosity 5 --nat $NAT $PARAMS console"
+geth --datadir "$DATADIR"  --ipcpath "$DATADIR/geth.ipc" --networkid 666 --identity "$IDENTITY" --rpc --nodiscover  --verbosity 5 --nat "$NAT" "$PARAMS" console
