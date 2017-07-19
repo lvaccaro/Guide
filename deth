@@ -1,5 +1,5 @@
 #!/bin/bash
-DATADIR="/tmp/delethereum"
+DATADIR="$HOME/.delethereum"
 IDENTITY="My DelEthereum Node"
 NAT="none"
 PARAMS=""
