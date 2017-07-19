@@ -13,19 +13,32 @@ Enjoy with our scam-contract.
 * in You, we Need.
 
 ## go-delethereum Client
-https://github.com/Delethereum/go-delethereum
-Download & build the client from https://github.com/delethereum/go-delethereum. 
-In alternative, download the official Ethereum implementation from https://github.com/ethereum/go-ethereum.
+Install the official Ethereum client or build your own from https://github.com/Delethereum/go-delethereum.
+Make sure, you have geth command in your $PATH.
+
+Installing from PPA for Linux
+```
+$ sudo add-apt-repository -y ppa:ethereum/ethereum
+$ sudo apt-get update
+$ sudo apt-get install ethereum
+```
+Installing from Brew for MacOS
+```
+$ brew tap ethereum/ethereum
+$ brew install ethereum
+```
+Building from source
 ```
 $ git clone https://github.com/delethereum/go-delethereum
 $ cd go-delethereum
 $ make geth
-$ ln -s ./build/bin/geth /usr/local/bin
+$ ln -s `echo pwd`/build/bin/geth /usr/local/bin
 ```
-Download & run the DelEthereum client configuration:
+Run DelEthereum:
 ```
-$ wget https://github.com/delethereum/guide/deth.sh
-$ sh deth.sh
+$ wget https://raw.githubusercontent.com/Delethereum/Guide/master/deth
+$ chmod +x deth
+$ sudo ln -s `echo pwd`/deth /usr/local/bin
 ```
 
 ## deMist Wallet
