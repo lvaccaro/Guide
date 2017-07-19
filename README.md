@@ -41,6 +41,7 @@ $ wget https://raw.githubusercontent.com/Delethereum/Guide/master/deth
 $ chmod +x deth
 $ sudo ln -s `echo pwd`/deth /usr/local/bin
 ```
+Default DelEthereum data folder: ~/.delethereum
 
 ## deMist Wallet
 https://github.com/Delethereum/deMist
@@ -54,17 +55,17 @@ $ deth
 #### Start wallet on MacOS
 If you have installed Ethereum Wallet
 ```
-$ /Applications/Ethereum\ Wallet.app/Contents/MacOS/Ethereum\ Wallet --rpc /tmp/delethereum/geth.ipc
+$ /Applications/Ethereum\ Wallet.app/Contents/MacOS/Ethereum\ Wallet --rpc ~/.delethereum/geth.ipc
 ```
 If you have installed Mist
 ```
-$ /Applications/Mist.app/Contents/MacOS/Mist --rpc /tmp/delethereum/geth.ipc
+$ /Applications/Mist.app/Contents/MacOS/Mist --rpc ~/.delethereum/geth.ipc
 ```
 #### Start wallet on Linux
 Run in the mist root dir
 ```
 $ cd interface && meteor --no-release-check
-$ node_modules/electron/dist/electron . --rpc /tmp/delethereum/geth.ipc
+$ node_modules/electron/dist/electron . --rpc ~/.delethereum/geth.ipc
 ```
 
 
