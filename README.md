@@ -13,6 +13,7 @@ Enjoy with our scam-contract.
 * in You, we Need.
 
 ## go-delethereum Client
+https://github.com/Delethereum/go-delethereum
 Install the official Ethereum client or build your own from https://github.com/Delethereum/go-delethereum.
 Make sure, you have geth command in your $PATH.
 
@@ -44,15 +45,23 @@ $ sudo ln -s `echo pwd`/deth /usr/local/bin
 ## deMist Wallet
 https://github.com/Delethereum/deMist
 
-Start Delethereum peer on localhost
+Download & install Mist or Ethereum Wallet from https://github.com/ethereum/mist/releases.
+
+#### Start DelEthereum peer on localhost
 ```
-$ sh deth.sh
+$ deth
 ```
-Start the client on MacOS
+#### Start wallet on MacOS
+If you have installed Ethereum Wallet
 ```
 $ /Applications/Ethereum\ Wallet.app/Contents/MacOS/Ethereum\ Wallet --rpc /tmp/delethereum/geth.ipc
 ```
-Start the client on Linux (in the mist root dir)
+If you have installed Mist
+```
+$ /Applications/Mist.app/Contents/MacOS/Mist --rpc /tmp/delethereum/geth.ipc
+```
+#### Start wallet on Linux
+Run in the mist root dir
 ```
 $ cd interface && meteor --no-release-check
 $ node_modules/electron/dist/electron . --rpc /tmp/delethereum/geth.ipc
