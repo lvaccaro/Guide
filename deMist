@@ -23,23 +23,22 @@ done
 
 if [[ "$unamestr" == 'Linux' ]]; then
         # Linux
-
-        if [ ! -d "interface" ]; then
-                echo "Please go to your deMist root folder";
-        elif [ ! -d "node_modules/electron/dist/electron" ]; then
-                echo "Please go to your deMist root folder";
+        if [ ! -d "./interface" ]; then
+                echo "Please go to your deMist root folder";    
+        elif [ ! -d "./node_modules/electron/dist/" ]; then
+                echo "Please go to your deMist root folder";    
         else
                 cd interface && meteor --no-release-check
                 node_modules/electron/dist/electron . --rpc $DATADIR/geth.ipc
         fi
-
+        
 elif [[ "$unamestr" == 'Darwin' ]]; then
         # MacOS
         if [ -d "/Applications/Mist.app" ]; then
                 /Applications/Mist.app/Contents/MacOS/Mist --rpc $DATADIR/geth.ipc
         elif [ -d "/Applications/Ethereum\ Wallet.app" ]; then
                 /Applications/Ethereum\ Wallet.app/Contents/MacOS/Ethereum\ Wallet --rpc $DATADIR/geth.ipc
-        elif
-                echo "Please install Mist or Ethereum Wallet"
+        else
+                echo "Please install Mist or Ethereum Wallet";
         fi
 fi
